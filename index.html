@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ServiceNow CSA Master Quiz - 974 Questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2d3748;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #5a67d8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #5a67d8;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: #718096;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4a5568;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select, input[type="number"], button {
+      border-radius: 8px;
+      border: 2px solid #e2e8f0;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    select {
+      background: white;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #5a67d8;
+      box-shadow: 0 0 0 3px rgba(90,103,216,0.1);
+    }
+
+    input[type="number"] {
+      width: 100px;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #5a67d8;
+    }
+
+    button {
+      background: #5a67d8;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    button:hover:not(:disabled) {
+      background: #4c51bf;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(90,103,216,0.4);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: white;
+      color: #5a67d8;
+      border: 2px solid #5a67d8;
+    }
+
+    button.secondary:hover:not(:disabled) {
+      background: #f7fafc;
+    }
+
+    button.danger {
+      background: #f56565;
+    }
+
+    button.danger:hover:not(:disabled) {
+      background: #e53e3e;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 15px;
+      background: #f7fafc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+
+    .stat strong {
+      color: #2d3748;
+      font-size: 1.1rem;
+    }
+
+    #questionCard {
+      padding: 25px;
+      background: #f7fafc;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    #questionText {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #2d3748;
+      font-weight: 500;
+    }
+
+    #multiHint {
+      background: #bee3f8;
+      color: #2c5282;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 15px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 2px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-row:hover {
+      border-color: #cbd5e0;
+      transform: translateX(2px);
+    }
+
+    .option-row input {
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    .option-row span {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .option-row.correct {
+      background: #c6f6d5;
+      border-color: #48bb78;
+    }
+
+    .option-row.incorrect {
+      background: #fed7d7;
+      border-color: #f56565;
+    }
+
+    #controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    #feedback {
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    #feedback.success {
+      background: #c6f6d5;
+      color: #22543d;
+      border: 2px solid #48bb78;
+      display: block;
+    }
+
+    #feedback.error {
+      background: #fed7d7;
+      color: #742a2a;
+      border: 2px solid #f56565;
+      display: block;
+    }
+
+    #explanation {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 2px solid rgba(0,0,0,0.1);
+      font-style: italic;
+    }
+
+    /* Modal for Weak Points */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .modal-header h2 {
+      color: #5a67d8;
+      font-size: 1.5rem;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #a0aec0;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+    }
+
+    .close-modal:hover {
+      color: #4a5568;
+    }
+
+    .weak-point-item {
+      padding: 12px;
+      background: #f7fafc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .weak-point-item:hover {
+      background: #edf2f7;
+    }
+
+    .go-to-section {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #controls {
+        flex-direction: column;
+      }
+
+      .go-to-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>
+        <span class="badge">974 QUESTIONS</span>
+        ServiceNow CSA Master Quiz
+      </h1>
+      <div class="subtitle">
+        Comprehensive CSA preparation with 5 categories • Track weak points • Explanations included
+      </div>
+
+      <div class="top-controls">
+        <div class="control-group">
+          <label for="categorySelect">Category</label>
+          <select id="categorySelect">
+            <option value="csa_exam">CSA Exam (347 Questions)</option>
+            <option value="csa_dumps_194">CSA Dumps 194 (194 Questions)</option>
+            <option value="skillcert">SkillCert (81 Questions)</option>
+            <option value="youtube_dumps">YouTube Dumps (200 Questions)</option>
+            <option value="other_sources">Other Sources (152 Questions)</option>
+          </select>
+        </div>
+
+        <div class="go-to-section">
+          <div class="control-group">
+            <label for="gotoInput">Go to Question #</label>
+            <input type="number" id="gotoInput" min="1" placeholder="1">
+          </div>
+          <button id="btnGoto">Go</button>
+        </div>
+
+        <button id="btnWeakPoints" class="secondary">📊 View Weak Points</button>
+        <button id="btnRetake" class="secondary">🔄 Retake Category</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">Progress: <strong id="progressText">1 / 347</strong></div>
+        <div class="stat">Score: <strong id="scoreText">0 / 0 (0%)</strong></div>
+        <div class="stat">Weak Points: <strong id="weakPointsCount">0</strong></div>
+      </div>
+
+      <div id="questionCard">
+        <div id="questionText">Loading questions...</div>
+        <div id="multiHint">⚠️ Multiple correct answers - Select all that apply</div>
+        <div id="optionsContainer"></div>
+      </div>
+
+      <div id="controls">
+        <button id="btnPrev" class="secondary">← Previous</button>
+        <button id="btnSubmit">Check Answer</button>
+        <button id="btnNext" class="secondary">Next →</button>
+      </div>
+
+      <div id="feedback"></div>
+    </div>
+  </div>
+
+  <!-- Weak Points Modal -->
+  <div id="weakPointsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📊 Your Weak Points</h2>
+        <button class="close-modal" onclick="closeWeakPointsModal()">×</button>
+      </div>
+      <div id="weakPointsList"></div>
+      <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <button onclick="retakeWeakPoints()" style="flex: 1;">Retake All Weak Points</button>
+        <button onclick="clearWeakPoints()" class="danger" style="flex: 1;">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.generated.js"></script>
+  <script>
+    // App state
+    let currentCategory = 'csa_exam';
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = {};
+    let weakPoints = JSON.parse(localStorage.getItem('weakPoints') || '{}');
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCategory();
+      setupEventListeners();
+      updateWeakPointsCount();
+    });
+
+    function setupEventListeners() {
+      document.getElementById('categorySelect').addEventListener('change', (e) => {
+        currentCategory = e.target.value;
+        loadCategory();
+      });
+
+      document.getElementById('btnPrev').addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          displayQuestion();
+        }
+      });
+
+      document.getElementById('btnNext').addEventListener('click', () => {
+        if (currentIndex < currentQuestions.length - 1) {
+          currentIndex++;
+          displayQuestion();
+        }
+      });
+
+      document.getElementById('btnSubmit').addEventListener('click', checkAnswer);
+
+      document.getElementById('btnRetake').addEventListener('click', retakeCategory);
+
+      document.getElementById('btnGoto').addEventListener('click', goToQuestion);
+
+      document.getElementById('btnWeakPoints').addEventListener('click', showWeakPointsModal);
+
+      document.getElementById('gotoInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') goToQuestion();
+      });
+    }
+
+    function loadCategory() {
+      currentQuestions = QUESTION_SETS[currentCategory] || [];
+      currentIndex = 0;
+      userAnswers = {};
+      document.getElementById('gotoInput').max = currentQuestions.length;
+      displayQuestion();
+    }
+
+    function displayQuestion() {
+      if (!currentQuestions.length) {
+        document.getElementById('questionText').textContent = 'No questions available.';
+        return;
+      }
+
+      const q = currentQuestions[currentIndex];
+      const questionNum = currentIndex + 1;
+
+      document.getElementById('questionText').textContent = `${questionNum}. ${q.question}`;
+
+      // Check if multiple choice
+      const isMultiple = Array.isArray(q.correct);
+      document.getElementById('multiHint').style.display = isMultiple ? 'block' : 'none';
+
+      // Render options
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      q.options.forEach((opt, i) => {
+        const row = document.createElement('div');
+        row.className = 'option-row';
+        
+        const input = document.createElement('input');
+        input.type = isMultiple ? 'checkbox' : 'radio';
+        input.name = 'answer';
+        input.value = i;
+        input.id = `opt${i}`;
+
+        const label = document.createElement('span');
+        label.textContent = opt;
+
+        row.appendChild(input);
+        row.appendChild(label);
+        row.onclick = () => input.click();
+
+        container.appendChild(row);
+      });
+
+      // Update progress
+      document.getElementById('progressText').textContent = `${questionNum} / ${currentQuestions.length}`;
+
+      // Update score
+      updateScore();
+
+      // Hide feedback
+      document.getElementById('feedback').style.display = 'none';
+      document.getElementById('feedback').className = '';
+
+      // Update buttons
+      document.getElementById('btnPrev').disabled = currentIndex === 0;
+      document.getElementById('btnNext').disabled = currentIndex === currentQuestions.length - 1;
+    }
+
+    function checkAnswer() {
+      const q = currentQuestions[currentIndex];
+      const isMultiple = Array.isArray(q.correct);
+
+      const selected = [];
+      document.querySelectorAll('input[name="answer"]:checked').forEach(inp => {
+        selected.push(parseInt(inp.value));
+      });
+
+      if (selected.length === 0) {
+        alert('Please select an answer first.');
+        return;
+      }
+
+      // Check correctness
+      let isCorrect = false;
+      if (isMultiple) {
+        const correctSet = new Set(q.correct);
+        const selectedSet = new Set(selected);
+        isCorrect = correctSet.size === selectedSet.size && 
+                    [...correctSet].every(x => selectedSet.has(x));
+      } else {
+        isCorrect = selected[0] === q.correct;
+      }
+
+      // Mark answer
+      userAnswers[currentIndex] = isCorrect;
+
+      // Visual feedback
+      const options = document.querySelectorAll('.option-row');
+      options.forEach((row, i) => {
+        const correctIndices = isMultiple ? q.correct : [q.correct];
+        if (correctIndices.includes(i)) {
+          row.classList.add('correct');
+        } else if (selected.includes(i)) {
+          row.classList.add('incorrect');
+        }
+      });
+
+      // Show feedback
+      const feedback = document.getElementById('feedback');
+      if (isCorrect) {
+        feedback.className = 'success';
+        feedback.innerHTML = '✅ Correct!';
+      } else {
+        feedback.className = 'error';
+        const correctLabels = isMultiple 
+          ? q.correct.map(i => String.fromCharCode(65 + i)).join(', ')
+          : String.fromCharCode(65 + q.correct);
+        feedback.innerHTML = `❌ Incorrect. The correct answer is: <strong>${correctLabels}</strong>`;
+
+        // Add to weak points
+        if (!weakPoints[currentCategory]) {
+          weakPoints[currentCategory] = [];
+        }
+        const qKey = `${currentCategory}_${currentIndex}`;
+        if (!weakPoints[currentCategory].includes(currentIndex)) {
+          weakPoints[currentCategory].push(currentIndex);
+          localStorage.setItem('weakPoints', JSON.stringify(weakPoints));
+          updateWeakPointsCount();
+        }
+      }
+
+      // Show explanation if available
+      if (q.explanation && q.explanation.trim()) {
+        feedback.innerHTML += `<div id="explanation">💡 ${q.explanation}</div>`;
+      }
+
+      updateScore();
+    }
+
+    function updateScore() {
+      const answered = Object.keys(userAnswers).length;
+      const correct = Object.values(userAnswers).filter(Boolean).length;
+      const percentage = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+      document.getElementById('scoreText').textContent = 
+        `${correct} / ${answered} (${percentage}%)`;
+    }
+
+    function retakeCategory() {
+      if (confirm(`Reset all answers for this category and start fresh?`)) {
+        userAnswers = {};
+        currentIndex = 0;
+        displayQuestion();
+      }
+    }
+
+    function goToQuestion() {
+      const num = parseInt(document.getElementById('gotoInput').value);
+      if (num >= 1 && num <= currentQuestions.length) {
+        currentIndex = num - 1;
+        displayQuestion();
+      } else {
+        alert(`Please enter a number between 1 and ${currentQuestions.length}`);
+      }
+    }
+
+    function showWeakPointsModal() {
+      const modal = document.getElementById('weakPointsModal');
+      const list = document.getElementById('weakPointsList');
+
+      let html = '';
+      const catPoints = weakPoints[currentCategory] || [];
+
+      if (catPoints.length === 0) {
+        html = '<p style="text-align: center; color: #718096; padding: 20px;">No weak points yet! Keep practicing. 💪</p>';
+      } else {
+        catPoints.forEach(idx => {
+          const q = currentQuestions[idx];
+          if (q) {
+            html += `
+              <div class="weak-point-item">
+                <span><strong>Q${idx + 1}:</strong> ${q.question.substring(0, 60)}...</span>
+                <div style="display: flex; gap: 8px;">
+                  <button onclick="jumpToWeakPoint(${idx})" class="secondary" style="padding: 6px 12px; font-size: 0.85rem;">Go</button>
+                  <button onclick="removeWeakPoint(${idx})" class="danger" style="padding: 6px 12px; font-size: 0.85rem;">✕</button>
+                </div>
+              </div>
+            `;
+          }
+        });
+      }
+
+      list.innerHTML = html;
+      modal.classList.add('active');
+    }
+
+    function closeWeakPointsModal() {
+      document.getElementById('weakPointsModal').classList.remove('active');
+    }
+
+    function jumpToWeakPoint(idx) {
+      currentIndex = idx;
+      displayQuestion();
+      closeWeakPointsModal();
+    }
+
+    function removeWeakPoint(idx) {
+      if (!weakPoints[currentCategory]) return;
+      weakPoints[currentCategory] = weakPoints[currentCategory].filter(i => i !== idx);
+      localStorage.setItem('weakPoints', JSON.stringify(weakPoints));
+      updateWeakPointsCount();
+      showWeakPointsModal();
+    }
+
+    function retakeWeakPoints() {
+      const catPoints = weakPoints[currentCategory] || [];
+      if (catPoints.length === 0) {
+        alert('No weak points to retake!');
+        return;
+      }
+
+      // Filter questions to only weak points
+      currentQuestions = catPoints.map(idx => QUESTION_SETS[currentCategory][idx]).filter(Boolean);
+      currentIndex = 0;
+      userAnswers = {};
+      closeWeakPointsModal();
+      displayQuestion();
+    }
+
+    function clearWeakPoints() {
+      if (confirm('Clear all weak points for this category?')) {
+        weakPoints[currentCategory] = [];
+        localStorage.setItem('weakPoints', JSON.stringify(weakPoints));
+        updateWeakPointsCount();
+        closeWeakPointsModal();
+      }
+    }
+
+    function updateWeakPointsCount() {
+      const catPoints = weakPoints[currentCategory] || [];
+      document.getElementById('weakPointsCount').textContent = catPoints.length;
+    }
+  </script>
+</body>
+</html>
