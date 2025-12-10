@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ServiceNow CSA Master Quiz - 974 Questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      color: #1a202c;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.25), 0 10px 25px rgba(0,0,0,0.15);
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+      -webkit-text-fill-color: white;
+    }
+
+    .subtitle {
+      color: #718096;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4a5568;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select, input[type="number"], button {
+      border-radius: 8px;
+      border: 2px solid #e2e8f0;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    select {
+      background: white;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #5a67d8;
+      box-shadow: 0 0 0 3px rgba(90,103,216,0.1);
+    }
+
+    input[type="number"] {
+      width: 100px;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #5a67d8;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102,126,234,0.5);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+      box-shadow: 0 2px 10px rgba(102,126,234,0.15);
+    }
+
+    button.secondary:hover:not(:disabled) {
+      background: #f7fafc;
+    }
+
+    button.danger {
+      background: #f56565;
+    }
+
+    button.danger:hover:not(:disabled) {
+      background: #e53e3e;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e9f3ff 100%);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #e0e7ff;
+    }
+
+    .stat {
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+
+    .stat strong {
+      color: #2d3748;
+      font-size: 1.1rem;
+    }
+
+    #questionCard {
+      padding: 30px;
+      background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+      border-radius: 16px;
+      border: 2px solid #e5e7eb;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    #questionText {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #2d3748;
+      font-weight: 500;
+    }
+
+    #multiHint {
+      background: #bee3f8;
+      color: #2c5282;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border: 2px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .option-row:hover {
+      border-color: #a5b4fc;
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(102,126,234,0.15);
+    }
+
+    .option-row input {
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    .option-row span {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .option-row.correct {
+      background: #c6f6d5;
+      border-color: #48bb78;
+    }
+
+    .option-row.incorrect {
+      background: #fed7d7;
+      border-color: #f56565;
+    }
+
+    #controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    #feedback {
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    #feedback.success {
+      background: #c6f6d5;
+      color: #22543d;
+      border: 2px solid #48bb78;
+      display: block;
+    }
+
+    #feedback.error {
+      background: #fed7d7;
+      color: #742a2a;
+      border: 2px solid #f56565;
+      display: block;
+    }
+
+    #explanation {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 2px solid rgba(0,0,0,0.1);
+      font-style: italic;
+    }
+
+    /* Modal for Weak Points */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .modal-header h2 {
+      color: #5a67d8;
+      font-size: 1.5rem;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #a0aec0;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+    }
+
+    .close-modal:hover {
+      color: #4a5568;
+    }
+
+    .weak-point-item {
+      padding: 12px;
+      background: #f7fafc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .weak-point-item:hover {
+      background: #edf2f7;
+    }
+
+    .go-to-section {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #controls {
+        flex-direction: column;
+      }
+
+      .go-to-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>
+        <span class="badge">974 QUESTIONS</span>
+        ServiceNow CSA Master Quiz
+      </h1>
+      <div class="subtitle">
+        Comprehensive CSA preparation with 5 categories • Track weak points • Explanations included
+      </div>
+
+      <div class="top-controls">
+        <div class="control-group">
+          <label for="categorySelect">Category</label>
+          <select id="categorySelect">
+            <option value="csa_exam">CSA Exam (347 Questions)</option>
+            <option value="csa_dumps_194">CSA Dumps 194 (194 Questions)</option>
+            <option value="skillcert">SkillCert (81 Questions)</option>
+            <option value="youtube_dumps">YouTube Dumps (200 Questions)</option>
+            <option value="other_sources">Other Sources (152 Questions)</option>
+            <option value="frequently_missed">⚠️ Frequently Missed (3+ times)</option>
+          </select>
+        </div>
+
+        <div class="go-to-section">
+          <div class="control-group">
+            <label for="gotoInput">Go to Question #</label>
+            <input type="number" id="gotoInput" min="1" placeholder="1">
+          </div>
+          <button id="btnGoto">Go</button>
+        </div>
+
+        <button id="btnWeakPoints" class="secondary">📊 View Weak Points</button>
+        <button id="btnRetake" class="secondary">🔄 Retake Category</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">📊 Progress: <strong id="progressText">1 / 347</strong></div>
+        <div class="stat">🎯 Score: <strong id="scoreText">0 / 0 (0%)</strong></div>
+        <div class="stat">⚠️ Weak (This Category): <strong id="weakPointsCount">0</strong></div>
+      </div>
+
+      <div id="questionCard">
+        <div id="questionText">Loading questions...</div>
+        <div id="multiHint">⚠️ Multiple correct answers - Select all that apply</div>
+        <div id="optionsContainer"></div>
+      </div>
+
+      <div id="controls">
+        <button id="btnPrev" class="secondary">← Previous</button>
+        <button id="btnSubmit">Check Answer</button>
+        <button id="btnNext" class="secondary">Next →</button>
+      </div>
+
+      <div id="feedback"></div>
+    </div>
+  </div>
+
+  <!-- Weak Points Modal -->
+  <div id="weakPointsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📊 Your Weak Points</h2>
+        <button class="close-modal" onclick="closeWeakPointsModal()">×</button>
+      </div>
+      <div id="weakPointsList"></div>
+      <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <button onclick="retakeWeakPoints()" style="flex: 1;">Retake All Weak Points</button>
+        <button onclick="clearWeakPoints()" class="danger" style="flex: 1;">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script>
+    // App state
+    let currentCategory = 'csa_exam';
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = {};
+    let weakPoints = JSON.parse(localStorage.getItem('weakPoints') || '{}');
+    let weakPointDetails = JSON.parse(localStorage.getItem('weakPointDetails') || '{}');
+    let missedCounts = JSON.parse(localStorage.getItem('missedCounts') || '{}');
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCategory();
+      setupEventListeners();
+      updateWeakPointsCount();
+    });
+
+    function setupEventListeners() {
+      document.getElementById('categorySelect').addEventListener('change', (e) => {
+        currentCategory = e.target.value;
+        loadCategory();
+      });
+
+      document.getElementById('btnPrev').addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          displayQuestion();
+        }
+      });
+
+      document.getElementById('btnNext').addEventListener('click', () => {
+        if (currentIndex < currentQuestions.length - 1) {
+          currentIndex++;
+          displayQuestion();
+        }
+      });
+
+      document.getElementById('btnSubmit').addEventListener('click', checkAnswer);
+
+      document.getElementById('btnRetake').addEventListener('click', retakeCategory);
+
+      document.getElementById('btnGoto').addEventListener('click', goToQuestion);
+
+      document.getElementById('btnWeakPoints').addEventListener('click', showWeakPointsModal);
+
+      document.getElementById('gotoInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') goToQuestion();
+      });
+    }
+
+    function loadCategory() {
+      if (currentCategory === 'frequently_missed') {
+        // Load questions missed 3+ times from all categories
+        currentQuestions = [];
+        Object.keys(missedCounts).forEach(qKey => {
+          if (missedCounts[qKey] >= 3) {
+            const [category, idxStr] = qKey.split('_');
+            const idx = parseInt(idxStr);
+            const originalQ = QUESTION_SETS[category]?.[idx];
+            if (originalQ) {
+              currentQuestions.push({
+                ...originalQ,
+                originalId: idx + 1,
+                displayId: idx + 1,
+                sourceCategory: category,
+                missCount: missedCounts[qKey]
+              });
+            }
+          }
+        });
+      } else {
+        currentQuestions = QUESTION_SETS[currentCategory] || [];
+      }
+      currentIndex = 0;
+      userAnswers = {};
+      document.getElementById('gotoInput').max = currentQuestions.length;
+      displayQuestion();
+      updateWeakPointsCount();
+    }
+
+    function displayQuestion() {
+      if (!currentQuestions.length) {
+        document.getElementById('questionText').textContent = 'No questions available.';
+        document.getElementById('optionsContainer').innerHTML = '';
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('btnSubmit').disabled = true;
+        document.getElementById('btnNext').disabled = true;
+        document.getElementById('btnPrev').disabled = true;
+        return;
+      }
+
+      // Re-enable buttons
+      document.getElementById('btnSubmit').disabled = false;
+
+      const q = currentQuestions[currentIndex];
+      const questionNum = q.displayId || q.originalId || (currentIndex + 1);
+
+      document.getElementById('questionText').textContent = `${questionNum}. ${q.question}`;
+
+      // Check if multiple choice
+      const isMultiple = Array.isArray(q.correct);
+      document.getElementById('multiHint').style.display = isMultiple ? 'block' : 'none';
+
+      // Render options
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      q.options.forEach((opt, i) => {
+        const row = document.createElement('div');
+        row.className = 'option-row';
+        
+        const input = document.createElement('input');
+        input.type = isMultiple ? 'checkbox' : 'radio';
+        input.name = 'answer';
+        input.value = i;
+        input.id = `opt${i}`;
+
+        const label = document.createElement('span');
+        label.textContent = opt;
+
+        row.appendChild(input);
+        row.appendChild(label);
+        row.onclick = () => input.click();
+
+        container.appendChild(row);
+      });
+
+      // Update progress
+      document.getElementById('progressText').textContent = `${questionNum} / ${currentQuestions.length}`;
+
+      // Update score
+      updateScore();
+
+      // Hide feedback
+      document.getElementById('feedback').style.display = 'none';
+      document.getElementById('feedback').className = '';
+
+      // Update buttons
+      document.getElementById('btnPrev').disabled = currentIndex === 0;
+      document.getElementById('btnNext').disabled = currentIndex === currentQuestions.length - 1;
+    }
+
+    function checkAnswer() {
+      const q = currentQuestions[currentIndex];
+      const isMultiple = Array.isArray(q.correct);
+
+      const selected = [];
+      document.querySelectorAll('input[name="answer"]:checked').forEach(inp => {
+        selected.push(parseInt(inp.value));
+      });
+
+      if (selected.length === 0) {
+        alert('Please select an answer first.');
+        return;
+      }
+
+      // Check correctness
+      let isCorrect = false;
+      if (isMultiple) {
+        const correctSet = new Set(q.correct);
+        const selectedSet = new Set(selected);
+        isCorrect = correctSet.size === selectedSet.size && 
+                    [...correctSet].every(x => selectedSet.has(x));
+      } else {
+        isCorrect = selected[0] === q.correct;
+      }
+
+      // Mark answer
+      userAnswers[currentIndex] = isCorrect;
+
+      // Visual feedback
+      const options = document.querySelectorAll('.option-row');
+      options.forEach((row, i) => {
+        const correctIndices = isMultiple ? q.correct : [q.correct];
+        if (correctIndices.includes(i)) {
+          row.classList.add('correct');
+        } else if (selected.includes(i)) {
+          row.classList.add('incorrect');
+        }
+      });
+
+      // Show feedback
+      const feedback = document.getElementById('feedback');
+      if (isCorrect) {
+        feedback.className = 'success';
+        feedback.innerHTML = '✅ Correct!';
+      } else {
+        feedback.className = 'error';
+        const correctLabels = isMultiple 
+          ? q.correct.map(i => String.fromCharCode(65 + i)).join(', ')
+          : String.fromCharCode(65 + q.correct);
+        feedback.innerHTML = `❌ Incorrect. The correct answer is: <strong>${correctLabels}</strong>`;
+
+        // Add to weak points with full details
+        if (!weakPoints[currentCategory]) {
+          weakPoints[currentCategory] = [];
+        }
+        if (!weakPointDetails[currentCategory]) {
+          weakPointDetails[currentCategory] = {};
+        }
+        
+        const qKey = `${currentCategory}_${currentIndex}`;
+        
+        // Track miss count
+        if (!missedCounts[qKey]) {
+          missedCounts[qKey] = 0;
+        }
+        missedCounts[qKey]++;
+        
+        // Store details
+        if (!weakPoints[currentCategory].includes(currentIndex)) {
+          weakPoints[currentCategory].push(currentIndex);
+        }
+        
+        weakPointDetails[currentCategory][currentIndex] = {
+          question: q.question,
+          options: q.options,
+          correct: q.correct,
+          userAnswer: selected,
+          missCount: missedCounts[qKey],
+          timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('weakPoints', JSON.stringify(weakPoints));
+        localStorage.setItem('weakPointDetails', JSON.stringify(weakPointDetails));
+        localStorage.setItem('missedCounts', JSON.stringify(missedCounts));
+        updateWeakPointsCount();
+      }
+
+      // Show explanation if available
+      if (q.explanation && q.explanation.trim()) {
+        feedback.innerHTML += `<div id="explanation">💡 ${q.explanation}</div>`;
+      }
+
+      updateScore();
+    }
+
+    function updateScore() {
+      const answered = Object.keys(userAnswers).length;
+      const correct = Object.values(userAnswers).filter(Boolean).length;
+      const percentage = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+      document.getElementById('scoreText').textContent = 
+        `${correct} / ${answered} (${percentage}%)`;
+    }
+
+    function retakeCategory() {
+      if (confirm(`Reset all answers for this category and start fresh?`)) {
+        userAnswers = {};
+        currentIndex = 0;
+        displayQuestion();
+      }
+    }
+
+    function goToQuestion() {
+      const num = parseInt(document.getElementById('gotoInput').value);
+      if (num >= 1 && num <= currentQuestions.length) {
+        currentIndex = num - 1;
+        displayQuestion();
+      } else {
+        alert(`Please enter a number between 1 and ${currentQuestions.length}`);
+      }
+    }
+
+    function showWeakPointsModal() {
+      const modal = document.getElementById('weakPointsModal');
+      const list = document.getElementById('weakPointsList');
+
+      let html = '';
+      let totalWeakPoints = 0;
+      
+      // Show weak points from ALL categories
+      Object.keys(weakPoints).forEach(category => {
+        const catPoints = weakPoints[category] || [];
+        if (catPoints.length > 0) {
+          totalWeakPoints += catPoints.length;
+          const categoryName = category.replace(/_/g, ' ').toUpperCase();
+          html += `<div style="margin-top: 20px; margin-bottom: 10px;">
+            <h3 style="color: #5a67d8; font-size: 1.1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
+              ${categoryName} (${catPoints.length} questions)
+            </h3>
+          </div>`;
+          
+          catPoints.forEach(idx => {
+            const details = weakPointDetails[category]?.[idx];
+            const qKey = `${category}_${idx}`;
+            const missCount = missedCounts[qKey] || 1;
+            
+            if (details) {
+              const correctAnswer = Array.isArray(details.correct) 
+                ? details.correct.map(i => String.fromCharCode(65 + i)).join(', ')
+                : String.fromCharCode(65 + details.correct);
+              
+              const userAnswerLabels = details.userAnswer.map(i => String.fromCharCode(65 + i)).join(', ');
+              
+              html += `
+                <div class="weak-point-item" style="flex-direction: column; align-items: stretch; padding: 15px; background: ${missCount >= 3 ? '#fff5f5' : '#f7fafc'}; border: 2px solid ${missCount >= 3 ? '#fc8181' : '#e2e8f0'};">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <strong style="color: #2d3748;">Q${idx + 1} ${missCount >= 3 ? '⚠️ Missed ' + missCount + ' times!' : '(Missed ' + missCount + 'x)'}</strong>
+                    <div style="display: flex; gap: 8px;">
+                      <button onclick="jumpToWeakPointCategory('${category}', ${idx})" class="secondary" style="padding: 6px 12px; font-size: 0.85rem;">Go</button>
+                      <button onclick="removeWeakPointFromCategory('${category}', ${idx})" class="danger" style="padding: 6px 12px; font-size: 0.85rem;">✕</button>
+                    </div>
+                  </div>
+                  <div style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 10px;">
+                    <strong>Q:</strong> ${details.question}
+                  </div>
+                  <div style="font-size: 0.9rem; margin-bottom: 8px;">
+                    ${details.options.map((opt, i) => {
+                      const isCorrect = Array.isArray(details.correct) ? details.correct.includes(i) : details.correct === i;
+                      const wasSelected = details.userAnswer.includes(i);
+                      const style = isCorrect ? 'color: #22543d; font-weight: 600;' : wasSelected ? 'color: #742a2a;' : '';
+                      return `<div style="${style}">
+                        ${String.fromCharCode(65 + i)}. ${opt} 
+                        ${isCorrect ? '✓' : ''}
+                        ${wasSelected && !isCorrect ? '✗' : ''}
+                      </div>`;
+                    }).join('')}
+                  </div>
+                  <div style="background: white; padding: 8px; border-radius: 6px; font-size: 0.85rem;">
+                    <span style="color: #22543d;"><strong>Correct:</strong> ${correctAnswer}</span> | 
+                    <span style="color: #742a2a;"><strong>You answered:</strong> ${userAnswerLabels}</span>
+                  </div>
+                </div>
+              `;
+            }
+          });
+        }
+      });
+
+      if (totalWeakPoints === 0) {
+        html = '<p style="text-align: center; color: #718096; padding: 20px;">No weak points yet! Keep practicing. 💪</p>';
+      }
+
+      list.innerHTML = html;
+      modal.classList.add('active');
+    }
+
+    function closeWeakPointsModal() {
+      document.getElementById('weakPointsModal').classList.remove('active');
+    }
+
+    function jumpToWeakPointCategory(category, idx) {
+      // Switch to that category
+      currentCategory = category;
+      document.getElementById('categorySelect').value = category;
+      loadCategory();
+      currentIndex = idx;
+      displayQuestion();
+      closeWeakPointsModal();
+    }
+
+    function removeWeakPointFromCategory(category, idx) {
+      if (!weakPoints[category]) return;
+      weakPoints[category] = weakPoints[category].filter(i => i !== idx);
+      if (weakPointDetails[category]) {
+        delete weakPointDetails[category][idx];
+      }
+      const qKey = `${category}_${idx}`;
+      if (missedCounts[qKey]) {
+        delete missedCounts[qKey];
+      }
+      localStorage.setItem('weakPoints', JSON.stringify(weakPoints));
+      localStorage.setItem('weakPointDetails', JSON.stringify(weakPointDetails));
+      localStorage.setItem('missedCounts', JSON.stringify(missedCounts));
+      updateWeakPointsCount();
+      showWeakPointsModal();
+    }
+
+    function retakeWeakPoints() {
+      // For frequently_missed category, retake all questions missed 3+ times
+      if (currentCategory === 'frequently_missed') {
+        if (currentQuestions.length === 0) {
+          alert('No questions have been missed 3 or more times yet!');
+          return;
+        }
+        // Already loaded, just reset
+        currentIndex = 0;
+        userAnswers = {};
+        closeWeakPointsModal();
+        displayQuestion();
+        return;
+      }
+
+      const catPoints = weakPoints[currentCategory] || [];
+      if (catPoints.length === 0) {
+        alert('No weak points to retake in current category!');
+        return;
+      }
+
+      // Create a modified version that keeps original question numbers
+      const originalQuestions = QUESTION_SETS[currentCategory];
+      currentQuestions = catPoints.map(idx => {
+        const q = originalQuestions[idx];
+        return {
+          ...q,
+          originalId: idx + 1,
+          displayId: idx + 1
+        };
+      }).filter(Boolean);
+      
+      currentIndex = 0;
+      userAnswers = {};
+      closeWeakPointsModal();
+      displayQuestion();
+    }
+
+    function clearWeakPoints() {
+      if (confirm('Clear ALL weak points from ALL categories?')) {
+        weakPoints = {};
+        weakPointDetails = {};
+        missedCounts = {};
+        localStorage.setItem('weakPoints', JSON.stringify(weakPoints));
+        localStorage.setItem('weakPointDetails', JSON.stringify(weakPointDetails));
+        localStorage.setItem('missedCounts', JSON.stringify(missedCounts));
+        updateWeakPointsCount();
+        closeWeakPointsModal();
+      }
+    }
+
+    function updateWeakPointsCount() {
+      // Show weak points for CURRENT category only
+      if (currentCategory === 'frequently_missed') {
+        // Count questions missed 3+ times
+        let count = 0;
+        Object.keys(missedCounts).forEach(qKey => {
+          if (missedCounts[qKey] >= 3) count++;
+        });
+        document.getElementById('weakPointsCount').textContent = count;
+      } else {
+        const catPoints = weakPoints[currentCategory] || [];
+        document.getElementById('weakPointsCount').textContent = catPoints.length;
+      }
+    }
+  </script>
+</body>
+</html>
